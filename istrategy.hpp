@@ -5,6 +5,7 @@
 #include "model/World.h"
 
 #include "action.hpp"
+#include "itank.hpp"
 
 class IStrategy
 {
@@ -12,7 +13,7 @@ public:
     IStrategy();
     virtual ~IStrategy();
 
-    virtual Action makeDecision(model::Tank tank, model::World world);
+    virtual Action makeDecision(ITank& tank, model::World world);
 };
 
 #endif // ISTRATEGY_HPP

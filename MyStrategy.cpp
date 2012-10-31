@@ -10,12 +10,14 @@
 #include "istrategy.hpp"
 #include "drivestrategy.hpp"
 #include "shootstrategy.hpp"
+#include "itank.hpp"
 
 using namespace model;
 
 
-void MyStrategy::Move(Tank tank, World world, model::Move& move)
+void MyStrategy::Move(Tank tank_, World world, model::Move& move)
 {
+    ITank tank(tank_);
     IStrategy *driver = new DriveStrategy;
     IStrategy *shooter = new ShootStrategy;
 

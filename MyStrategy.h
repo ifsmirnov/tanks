@@ -5,7 +5,8 @@
 
 #include "Strategy.h"
 
-class MyStrategy : public Strategy {
+class MyStrategy : public Strategy
+{
 public:
 	void Move(model::Tank self, model::World world, model::Move& move);
 	model::TankType SelectTank(int tank_index, int team_size);

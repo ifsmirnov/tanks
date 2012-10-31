@@ -6,7 +6,7 @@ IStrategy::IStrategy()
 IStrategy::~IStrategy()
     {  }
 
-Action IStrategy::makeDecision(model::Tank, model::World)
+Action IStrategy::makeDecision(ITank&, model::World)
 {
     return Action();
 }

@@ -29,21 +29,21 @@ public:
 };
 double TankRec::minAngle = 0;
 
-Action ShootStrategy::makeDecision(model::Tank tank, model::World world)
+Action ShootStrategy::makeDecision(ITank &tank, model::World world)
 {
     Action action;
 
-    TankRec::minAngle = tank.remaining_reloading_time() * tank.turret_turn_speed();
+    TankRec::minAngle = tank.remainingReloadTime() * tank.turretTurnSpeed();
 
     std::vector<model::Tank> tanks = world.tanks();
     std::vector<TankRec> enemies;
 
     for (std::vector<model::Tank>::iterator it = tanks.begin(); it != tanks.end(); it++)
     {
-        model::Tank t = *it;
-        if (!t.teammate())
+        ITank t(*it);
+        if (!t.isTeammate() && !t.isDead())
         {
-            enemies.push_back(TankRec(tank.GetTurretAngleTo(t),
+            enemies.push_back(TankRec(tank.turretAngleTo(t),
                                       tank.GetDistanceTo(t),
                                       it - tanks.begin()));
         }

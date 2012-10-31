@@ -8,7 +8,7 @@ class ShootStrategy : public IStrategy
 public:
     ShootStrategy();
 
-    Action makeDecision(model::Tank tank, model::World world);
+    Action makeDecision(ITank& tank, model::World world);
 };
 
 #endif // SHOOTSTRATEGY_HPP

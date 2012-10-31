@@ -4,7 +4,7 @@ DriveStrategy::DriveStrategy()
 {
 }
 
-Action DriveStrategy::makeDecision(model::Tank tank, model::World world)
+Action DriveStrategy::makeDecision(ITank &tank, model::World world)
 {
     Action action;
     action.setLeft(0);
