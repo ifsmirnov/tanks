@@ -18,8 +18,12 @@ void MyStrategy::Move(Tank tank, World world, model::Move& move)
 {
     IStrategy *driver = new DriveStrategy;
     IStrategy *shooter = new ShootStrategy;
+
     driver->makeDecision(tank, world).applyAction(move);
     shooter->makeDecision(tank, world).applyAction(move);
+
+    delete driver;
+    delete shooter; // i'm a fucking manslaughter
 }
 
 TankType MyStrategy::SelectTank(int, int)
