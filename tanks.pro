@@ -1,4 +1,4 @@
-SOURCES += \
+HEADERS += \
     MyStrategy.h \
     RemoteProcessClient.h \
     Runner.h \
@@ -17,9 +17,13 @@ SOURCES += \
     model/Shell.h \
     model/Tank.h \
     model/Unit.h \
-    model/World.h
+    model/World.h \
+    istrategy.hpp \
+    action.hpp \
+    drivestrategy.hpp \
+    shootstrategy.hpp
 
-HEADERS += \
+SOURCES += \
     main.cpp \
     MyStrategy.cpp \
     RemoteProcessClient.cpp \
@@ -36,4 +40,8 @@ HEADERS += \
     model/Shell.cpp \
     model/Tank.cpp \
     model/Unit.cpp \
-    model/World.cpp
+    model/World.cpp \
+    istrategy.cpp \
+    action.cpp \
+    drivestrategy.cpp \
+    shootstrategy.cpp

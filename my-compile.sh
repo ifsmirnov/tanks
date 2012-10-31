@@ -5,6 +5,7 @@
 CXX="g++ -static -fno-optimize-sibling-calls -fno-strict-aliasing \
      -DONLINE_JUDGE -D_LINUX -lm -s -O2"
 name="MyStrategy"
+staticSources="RemoteProcessClient|Runner"
 
 if [ ! -f $name.cpp ]
 then
@@ -17,9 +18,8 @@ rm -f $name
 libs=""
 
 # compile static sources in parent directory
-for file in `ls *.cpp | grep -v $name`
+for bfile in RemoteProcessClient Runner
 do
-    bfile=`basename $file .cpp`
     if [ ! -e $bfile.o ]
     then
         echo Compiling file $bfile.cpp...
@@ -47,5 +47,5 @@ do
     libs="$libs $dir/$lib"
 done
 
-$CXX $name.cpp $libs -o $name || exit 1
+$CXX `ls *.cpp | egrep -v $staticSources` $libs -o $name || exit 1
 
