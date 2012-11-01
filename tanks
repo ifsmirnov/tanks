@@ -1,0 +1,2 @@
+#!/bin/bash
+./local-runner.sh && sleep 2 && ./MyStrategy
