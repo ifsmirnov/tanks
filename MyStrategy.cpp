@@ -11,6 +11,7 @@
 #include "drivestrategy.hpp"
 #include "shootstrategy.hpp"
 #include "itank.hpp"
+#include "geom.hpp"
 
 using namespace model;
 

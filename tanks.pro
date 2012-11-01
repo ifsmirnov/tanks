@@ -22,7 +22,9 @@ HEADERS += \
     action.hpp \
     drivestrategy.hpp \
     shootstrategy.hpp \
-    itank.hpp
+    itank.hpp \
+    geom.hpp \
+    iunit.hpp
 
 SOURCES += \
     main.cpp \
@@ -46,4 +48,6 @@ SOURCES += \
     action.cpp \
     drivestrategy.cpp \
     shootstrategy.cpp \
-    itank.cpp
+    itank.cpp \
+    geom.cpp \
+    iunit.cpp

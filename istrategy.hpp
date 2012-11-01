@@ -7,6 +7,8 @@
 #include "action.hpp"
 #include "itank.hpp"
 
+#include "geom.hpp"
+
 #include <cmath>
 
 class IStrategy
