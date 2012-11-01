@@ -3,6 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include <cmath>
+#include <iostream>
 
 ShootStrategy::ShootStrategy()
 {
@@ -53,8 +54,14 @@ Action ShootStrategy::makeDecision(ITank &tank, model::World world)
     if (!enemies.empty())
     {
         action.setTurretRotate(enemies[0].angle);
-        if (fabs(todeg(enemies[0].angle) < 3.0))
+        if (fabs(todeg(enemies[0].angle)) < 3.0)
+        {
             action.setFireType(model::PREMIUM_PREFERRED);
+            if (tank.remainingReloadTime() == 0)
+            {
+                std::cerr << "Shoot, angle = " << todeg(enemies[0].angle) << std::endl;
+            }
+        }
         else
             action.setFireType(model::NONE);
         if (world.tick() < 3)
