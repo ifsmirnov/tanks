@@ -53,9 +53,11 @@ Action ShootStrategy::makeDecision(ITank &tank, model::World world)
     if (!enemies.empty())
     {
         action.setTurretRotate(enemies[0].angle);
-        if (fabs(enemies[0].angle) < 3.14 / 180 * 5)
+        if (fabs(todeg(enemies[0].angle) < 3.0))
             action.setFireType(model::PREMIUM_PREFERRED);
         else
+            action.setFireType(model::NONE);
+        if (world.tick() < 3)
             action.setFireType(model::NONE);
     }
     else

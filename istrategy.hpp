@@ -7,6 +7,8 @@
 #include "action.hpp"
 #include "itank.hpp"
 
+#include <cmath>
+
 class IStrategy
 {
 public:
@@ -14,6 +16,10 @@ public:
     virtual ~IStrategy();
 
     virtual Action makeDecision(ITank& tank, model::World world);
+
+protected:
+    double todeg(double rad);
+    double torad(double deg);
 };
 
 #endif // ISTRATEGY_HPP
