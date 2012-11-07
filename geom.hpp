@@ -30,8 +30,4 @@ private:
     double x_, y_;
 };
 
-class Rect
-{
-};
-
 #endif // GEOM_HPP
