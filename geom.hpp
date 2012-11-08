@@ -20,6 +20,10 @@ public:
     Point operator - (const Point&) const;
     Point operator * (double) const;
 
+    Point turned(double sin, double cos) const;
+
+    double operator * (const Point&) const;
+
     double angle() const;
     double angleTo(const Point&) const;
 
@@ -29,5 +33,12 @@ public:
 private:
     double x_, y_;
 };
+
+namespace geom
+{
+
+double timeToReachSegment(Point u, Point v, Point p1, Point p2);
+
+} // namespace geom
 
 #endif // GEOM_HPP

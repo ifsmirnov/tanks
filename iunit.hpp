@@ -28,6 +28,10 @@ public:
     double distanceTo(const model::Unit& unit) const;
     double distanceTo(const IUnit& unit) const;
 
+    Point getVertex(int vertexId);
+
+    double whenWillBeHitBy(Point start, Point dir);
+
 private:
     const model::Unit& unit_;
 };
