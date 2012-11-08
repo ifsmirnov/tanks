@@ -31,10 +31,11 @@ Point IUnit::getVertex(int vertexId)
        |  |
        2--1
     */
-    const static double xMultiplier[4] = {0.5, -0.5, -0.5, 0.5};
-    const static double yMultiplier[4] = {0.5, 0.5, -0.5, -0.5};
+    const static double mf = 0.42; // marginFactor
+    const static double xMultiplier[4] = {mf, -mf, -mf, mf};
+    const static double yMultiplier[4] = {mf, mf, -mf, -mf};
 
-    Point offset(width() * xMultiplier[vertexId], height() * yMultiplier[vertexId]);
+    Point offset(width() * xMultiplier[vertexId] - 3, height() * yMultiplier[vertexId] - 3);
     offset = offset.turned(sin(angle()), cos(angle()));
 
     return pos() + offset;
@@ -49,7 +50,10 @@ double IUnit::whenWillBeHitBy(Point start, Point dir)
               p2 = getVertex((i+1)%4);
         double t = geom::timeToReachSegment(start, dir, p1, p2);
         if (t > -0.5 && t < res)
+        {
+            //std::cerr << "relax with " << i << "  " << p1 << "  " << p2 << std::endl;
             res = t;
+        }
     }
     return res > 1e9 ? -1 : res;
 }

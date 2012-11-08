@@ -4,6 +4,7 @@
 #include "model/Unit.h"
 #include "model/Tank.h"
 #include "iunit.hpp"
+#include "geom.hpp"
 
 class ITank : public IUnit
 {
@@ -29,12 +30,14 @@ public:
     int remainingReloadTime() const;
     int reloadTime() const;
     double turretRelativeAngle() const;
+    double turretAbsoluteAngle() const;
     double turretMaxRelativeAngle() const;
     double turretTurnSpeed() const;
     double turretAngleTo(double x, double y) const;
     double turretAngleTo(const model::Unit & unit) const;
     int premiumShellCount() const;
     double gunLength() const;
+    Point gunEndpoint() const;
 
     double mass() const;
     double enginePower() const;

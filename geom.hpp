@@ -1,10 +1,12 @@
 #ifndef GEOM_HPP
 #define GEOM_HPP
 
+#include <iostream>
+
 class Point
 {
 public:
-    const static double eps = 1e-9;
+    const static double eps = 1e-5;
 
     Point();
     Point(double, double);
@@ -23,6 +25,7 @@ public:
     Point turned(double sin, double cos) const;
 
     double operator * (const Point&) const;
+    double operator ^ (const Point&) const;
 
     double angle() const;
     double angleTo(const Point&) const;
@@ -30,9 +33,12 @@ public:
     double length() const;
     double distanceTo(const Point&) const;
 
+    bool inSegment(const Point&, const Point&) const;
+
 private:
     double x_, y_;
 };
+std::ostream &operator<<(std::ostream &out, const Point &point);
 
 namespace geom
 {

@@ -34,7 +34,7 @@ Action ShootStrategy::makeDecision(ITank &tank, model::World world)
 {
     Action action;
 
-    TankRec::minAngle = tank.remainingReloadTime() * tank.turretTurnSpeed();
+    TankRec::minAngle = 0;//tank.remainingReloadTime() * tank.turretTurnSpeed(); // TODO
 
     std::vector<model::Tank> tanks = world.tanks();
     std::vector<TankRec> enemies;
@@ -53,19 +53,42 @@ Action ShootStrategy::makeDecision(ITank &tank, model::World world)
     std::sort(enemies.begin(), enemies.end());
     if (!enemies.empty())
     {
-        action.setTurretRotate(enemies[0].angle);
-        if (fabs(todeg(enemies[0].angle)) < 3.0)
+        ITank enemy(tanks[enemies[0].id]);
+        action.setTurretRotate(tank.turretAngleTo(enemy));
+
+        if (tank.remainingReloadTime() == 0 && world.tick() >= 3)
         {
-            action.setFireType(model::PREMIUM_PREFERRED);
-            if (tank.remainingReloadTime() == 0)
+            model::ShellType shellType = tank.premiumShellCount() ? model::PREMIUM : model::REGULAR;
+            Point shootPos = tank.gunEndpoint();
+            //std::cerr << "gunAngle = " << (shootPos - tank.pos()).angle() << std::endl;
+            //std::cerr << "angle = " << tank.angle() << std::endl;
+            Point shootVector(cos(tank.turretAbsoluteAngle()), sin(tank.turretAbsoluteAngle()));
+            //std::cerr << "pre sV = " << shootVector << std::endl;
+            if (shellType == model::REGULAR)
+                shootVector *= 16.666667;
+            else
+                shootVector *= 13.333333;
+
+            std::cerr << "Fail rate: " << todeg(shootVector.angleTo(enemy.pos() - shootPos)) << std::endl;
+
+            double timeToHit = enemy.whenWillBeHitBy(shootPos, shootVector);
+            std::cerr << "tth = " << timeToHit << std::endl;
+            double angleToEnemy = todeg(tank.turretAngleTo(enemy));
+            std::cerr << "aTE = " << angleToEnemy << std::endl;
+            if (timeToHit > -0.5)
+            //if (abs(todeg(tank.turretAngleTo(enemy))) < 3.0)
             {
+                action.setFireType(model::PREMIUM_PREFERRED);
                 std::cerr << "Shoot, angle = " << todeg(enemies[0].angle) << std::endl;
+                std::cerr << "wwhb = " << timeToHit << std::endl;
             }
+            else
+                action.setFireType(model::NONE);
         }
         else
+        {
             action.setFireType(model::NONE);
-        if (world.tick() < 3)
-            action.setFireType(model::NONE);
+        }
     }
     else
     {
