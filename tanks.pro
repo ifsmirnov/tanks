@@ -24,7 +24,8 @@ HEADERS += \
     shootstrategy.hpp \
     itank.hpp \
     geom.hpp \
-    iunit.hpp
+    iunit.hpp \
+    irect.hpp
 
 SOURCES += \
     main.cpp \
@@ -50,4 +51,5 @@ SOURCES += \
     shootstrategy.cpp \
     itank.cpp \
     geom.cpp \
-    iunit.cpp
+    iunit.cpp \
+    irect.cpp

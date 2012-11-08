@@ -25,12 +25,14 @@ public:
     double angleTo(const model::Unit& unit) const;
     double angleTo(const IUnit& unit) const;
     double distanceTo(double x, double y) const;
+    double distanceTo(const Point &point) const;
     double distanceTo(const model::Unit& unit) const;
     double distanceTo(const IUnit& unit) const;
 
-    Point getVertex(int vertexId);
+    Point getVertex(int vertexId) const;
 
-    double whenWillBeHitBy(Point start, Point dir);
+    double whenWillBeHitBy(Point start, Point dir) const;
+    double whenWillBeHitByWithOffset(Point start, Point dir) const;
 
 private:
     const model::Unit& unit_;

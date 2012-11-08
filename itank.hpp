@@ -6,6 +6,8 @@
 #include "iunit.hpp"
 #include "geom.hpp"
 
+#include <string>
+
 class ITank : public IUnit
 {
 public:
@@ -14,6 +16,8 @@ public:
     const model::Tank tank() const;
 
     operator model::Tank() const;
+
+    std::string playerName() const;
 
     int health() const;
     int armour() const;
@@ -34,6 +38,7 @@ public:
     double turretMaxRelativeAngle() const;
     double turretTurnSpeed() const;
     double turretAngleTo(double x, double y) const;
+    double turretAngleTo(const Point &point) const;
     double turretAngleTo(const model::Unit & unit) const;
     int premiumShellCount() const;
     double gunLength() const;
