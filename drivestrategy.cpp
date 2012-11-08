@@ -20,7 +20,7 @@ Action DriveStrategy::makeDecision(ITank &tank, model::World world)
     for (int i = 1; i < (int)bonuses.size(); i++)
     {
         model::Bonus cur = bonuses[i];
-        if (tank.GetDistanceTo(cur) < tank.GetDistanceTo(best))
+        if (tank.distanceTo(cur) < tank.distanceTo(best))
             best = cur;
     }
     //std::cerr << "Move to " << best.x() << " " << best.y() << std::endl;
@@ -30,7 +30,7 @@ Action DriveStrategy::makeDecision(ITank &tank, model::World world)
 
 void DriveStrategy::moveTo(ITank &tank, double x, double y, Action &action)
 {
-    double angle = tank.GetAngleTo(x, y);
+    double angle = tank.angleTo(x, y);
     //std::cerr << "angle = " << todeg(angle) << std::endl;
     if (fabs(todeg(angle)) < 15)
     {

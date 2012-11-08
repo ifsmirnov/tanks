@@ -3,13 +3,21 @@
 
 #include "model/Unit.h"
 #include "model/Tank.h"
+#include "iunit.hpp"
+#include "geom.hpp"
 
-class ITank : public model::Unit
+#include <string>
+
+class ITank : public IUnit
 {
 public:
     ITank(const model::Tank &tank);
 
     const model::Tank tank() const;
+
+    operator model::Tank() const;
+
+    std::string playerName() const;
 
     int health() const;
     int armour() const;
@@ -26,12 +34,15 @@ public:
     int remainingReloadTime() const;
     int reloadTime() const;
     double turretRelativeAngle() const;
+    double turretAbsoluteAngle() const;
     double turretMaxRelativeAngle() const;
     double turretTurnSpeed() const;
     double turretAngleTo(double x, double y) const;
+    double turretAngleTo(const Point &point) const;
     double turretAngleTo(const model::Unit & unit) const;
     int premiumShellCount() const;
     double gunLength() const;
+    Point gunEndpoint() const;
 
     double mass() const;
     double enginePower() const;
