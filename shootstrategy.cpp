@@ -45,7 +45,7 @@ Action ShootStrategy::makeDecision(ITank &tank, model::World world)
         if (!t.isTeammate() && !t.isDead())
         {
             enemies.push_back(TankRec(tank.turretAngleTo(t),
-                                      tank.GetDistanceTo(t),
+                                      tank.distanceTo(t),
                                       it - tanks.begin()));
         }
     }

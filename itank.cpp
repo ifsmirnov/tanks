@@ -1,11 +1,11 @@
 #include "itank.hpp"
 
 ITank::ITank(const model::Tank &tank) :
-    tank_(tank),
-    model::Unit(tank.id(), tank.width(), tank.height(), tank.x(), tank.y(),
-        tank.speed_x(), tank.speed_y(), tank.angle(), tank.angular_speed()) {  }
+    IUnit(tank), tank_(tank) {  }
 
 const model::Tank ITank::tank() const { return tank_; }
+
+ITank::operator model::Tank() const { return tank(); }
 
 int ITank::health() const { return tank().crew_health(); }
 int ITank::armour() const { return tank().hull_durability(); }

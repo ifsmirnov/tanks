@@ -3,13 +3,16 @@
 
 #include "model/Unit.h"
 #include "model/Tank.h"
+#include "iunit.hpp"
 
-class ITank : public model::Unit
+class ITank : public IUnit
 {
 public:
     ITank(const model::Tank &tank);
 
     const model::Tank tank() const;
+
+    operator model::Tank() const;
 
     int health() const;
     int armour() const;

@@ -9,8 +9,6 @@ class IUnit
 public:
     IUnit(const model::Unit &unit);
 
-    model::Unit unit() const;
-
     long long id() const;
     double width() const;
     double height() const;

@@ -3,8 +3,6 @@
 IUnit::IUnit(const model::Unit &unit) :
     unit_(unit) {  }
 
-model::Unit IUnit::unit() const { return unit_; }
-
 long long IUnit::id() const { return unit_.id(); }
 double IUnit::width() const { return unit_.width(); }
 double IUnit::height() const { return unit_.width(); }
